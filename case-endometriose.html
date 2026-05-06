@@ -6,7 +6,6 @@
 <title>Endo Clinic — Lucas Schuller</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="case.css">
-
 </head>
 <body>
 
@@ -38,7 +37,11 @@
     <div class="info-cell"><p class="info-label">Scope</p><p class="info-val">UI Design<br>Conversion</p></div>
     <div class="info-cell"><p class="info-label">Result</p><p class="info-val">27% conversion<br>465 leads · 5mo</p></div>
   </div>
-  <div class="hero-visual"><img src="assets/endo-lp-clean.png" alt="Endometriose LP"></div>
+
+  <div class="hero-visual" style="display:flex;justify-content:center;align-items:center;width:100%;max-width:100%;margin:2rem 0;">
+    <img src="assets/endo-lp-clean.png" alt="Endometriose LP" style="width:100%;max-width:560px;height:auto;display:block;border-radius:12px;">
+  </div>
+
   <div class="case-section">
     <p class="cs-label">Context</p>
     <h2 class="cs-title">UI focused on conversion, not copy.</h2>
@@ -98,4 +101,5 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav-bar').classList.toggle('scrolled', window.scrollY > 40);
 });
 </script>
-</body></html>
+</body>
+</html>
