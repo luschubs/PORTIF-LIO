@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify Social Features — Wireframes Low-Fi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F5F2ED;
+    color: #1A1916;
+    padding: 2rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #E0DDD8;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    font-size: 14px;
+    color: #6B6860;
+  }
+
+  /* Option headers */
+  .option-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #E0DDD8;
+  }
+  .option-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1DB954;
+    background: #1DB95415;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .option-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .option-desc {
+    font-size: 13px;
+    color: #6B6860;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  /* Phone frames */
+  .phones-row {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .phone-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .phone {
+    width: 280px;
+    height: 580px;
+    background: #FFFFFF;
+    border-radius: 32px;
+    border: 2px solid #1A1916;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.06);
+  }
+
+  /* Phone internal parts */
+  .phone-notch {
+    width: 100px;
+    height: 24px;
+    background: #1A1916;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto;
+  }
+
+  .phone-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 20px 0;
+    font-size: 10px;
+    color: #999;
+  }
+
+  .phone-content {
+    padding: 12px 16px;
+    height: calc(100% - 90px);
+    overflow-y: auto;
+  }
+
+  .phone-navbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    border-top: 1px solid #282828;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    color: #B3B3B3;
+  }
+  .nav-item.active { color: #FFFFFF; }
+  .nav-item.new { color: #1DB954; }
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid currentColor;
+  }
+  .nav-icon.filled {
+    background: currentColor;
+  }
+
+  /* Wireframe elements */
+  .wf-header {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1A1916;
+    margin-bottom: 12px;
+  }
+
+  .wf-search {
+    height: 32px;
+    background: #F0F0F0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 11px;
+    color: #999;
+  }
+
+  .wf-section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6860;
+    margin-bottom: 8px;
+    margin-top: 12px;
+  }
+
+  .wf-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #E8E5E0;
+    border: 1.5px solid #CCC;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #999;
+  }
+  .wf-avatar.sm { width: 28px; height: 28px; font-size: 10px; }
+  .wf-avatar.lg { width: 48px; height: 48px; font-size: 14px; }
+
+  .wf-line {
+    height: 8px;
+    background: #E8E5E0;
+    border-radius: 4px;
+  }
+  .wf-line.short { width: 60%; }
+  .wf-line.medium { width: 80%; }
+  .wf-line.long { width: 95%; }
+  .wf-line.xs { height: 6px; }
+
+  .wf-card {
+    background: #F8F7F5;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px dashed #D5D2CC;
+  }
+
+  .wf-badge {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: #1DB954;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .wf-badge.premium {
+    background: #1DB954;
+  }
+  .wf-badge.free {
+    background: #B3B3B3;
+  }
+
+  .wf-chat-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .wf-chat-bubble {
+    background: #F0F0F0;
+    border-radius: 12px 12px 12px 4px;
+    padding: 8px 10px;
+    max-width: 180px;
+  }
+  .wf-chat-bubble.sent {
+    background: #1DB95420;
+    border-radius: 12px 12px 4px 12px;
+    margin-left: auto;
+  }
+
+  .wf-song-card {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #F0F0F0;
+    border-radius: 8px;
+    padding: 6px 8px;
+    margin-top: 4px;
+  }
+  .wf-song-art {
+    width: 32px;
+    height: 32px;
+    background: #D5D2CC;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .wf-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+    border-bottom: 1.5px solid #E8E5E0;
+  }
+  .wf-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: #B3B3B3;
+    border-bottom: 2px solid transparent;
+  }
+  .wf-tab.active {
+    color: #1A1916;
+    border-bottom-color: #1DB954;
+  }
+
+  .wf-community-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background: #F8F7F5;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border: 1px dashed #D5D2CC;
+  }
+  .wf-community-art {
+    width: 48px;
+    height: 48px;
+    background: #E8E5E0;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .wf-lock-overlay {
+    position: relative;
+  }
+  .wf-lock-overlay::after {
+    content: '🔒 Premium';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: #1DB954;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+  }
+
+  .wf-upgrade-banner {
+    background: linear-gradient(135deg, #1DB954, #1ed760);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    margin-top: 12px;
+  }
+  .wf-upgrade-text {
+    font-size: 11px;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .wf-upgrade-btn {
+    font-size: 10px;
+    color: #1DB954;
+    background: white;
+    padding: 5px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  .phone-label {
+    margin-top: 12px;
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6860;
+    text-align: center;
+  }
+
+  /* Annotations */
+  .annotation {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    color: #1DB954;
+    position: relative;
+    padding-left: 12px;
+    margin: 6px 0;
+  }
+  .annotation::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+  }
+
+  /* Section divider */
+  .section-divider {
+    border: none;
+    border-top: 2px dashed #E0DDD8;
+    margin: 3rem 0;
+  }
+
+  /* Notes */
+  .notes-box {
+    background: #FFFDE7;
+    border: 1px dashed #E6D770;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  .notes-title {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #8B7A00;
+  }
+  .notes-text {
+    font-size: 12px;
+    color: #6B6860;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Spotify Social Features — Wireframes Low-Fi</h1>
+  <p>TCC · Redesign UX · 2 opções para teste com usuários · Lucas Schuller</p>
+</div>
+
+<!-- ===================== OPTION A ===================== -->
+<div class="option-header">
+  <span class="option-label">Option A</span>
+  <span class="option-title">Mensagens Diretas + Perfil Social</span>
+</div>
+<p class="option-desc">
+  As mensagens viram uma feature principal. Usuários podem enviar músicas, playlists e notas de voz para amigos direto pelo app. Usuários Premium têm mensagens ilimitadas, reações e sessões de escuta compartilhada. Usuários Free veem a feature mas travam após 3 mensagens/dia — criando um gatilho natural de upgrade.
+</p>
+
+<div class="phones-row">
+
+  <!-- Screen A1: Messages Tab -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div class="wf-header">Mensagens</div>
+        <div class="wf-search">🔍 Buscar amigos...</div>
+
+        <div class="wf-section-title">Ativos agora</div>
+        <div style="display: flex; gap: 12px; margin-bottom: 14px; overflow-x: auto;">
+          <div style="text-align: center;">
+            <div class="wf-avatar" style="border-color: #1DB954; border-width: 2px;">👤</div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">Ana</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="wf-avatar" style="border-color: #1DB954; border-width: 2px;">👤</div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">Luigi</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="wf-avatar">👤</div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">Edu</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="wf-avatar">👤</div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">Vic</div>
+          </div>
+        </div>
+
+        <div class="wf-section-title">Recentes</div>
+        
+        <div class="wf-card" style="display: flex; gap: 10px; align-items: center;">
+          <div class="wf-avatar">👤</div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="wf-line short" style="height: 10px;"></div>
+              <span style="font-size: 9px; color: #999;">2min</span>
+            </div>
+            <div style="display: flex; gap: 4px; align-items: center; margin-top: 4px;">
+              <span style="font-size: 10px;">🎵</span>
+              <div class="wf-line medium xs"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-card" style="display: flex; gap: 10px; align-items: center;">
+          <div class="wf-avatar">👤</div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="wf-line short" style="height: 10px;"></div>
+              <span style="font-size: 9px; color: #999;">1h</span>
+            </div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-card" style="display: flex; gap: 10px; align-items: center;">
+          <div class="wf-avatar">👤</div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="wf-line short" style="height: 10px;"></div>
+              <span style="font-size: 9px; color: #999;">3h</span>
+            </div>
+            <div class="wf-line long xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="annotation">Premium: chats ilimitados</div>
+        <div class="annotation">Free: limite de 3 mensagens/dia</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Social</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">A1 — Aba de Mensagens (novo item na nav)</div>
+  </div>
+
+  <!-- Screen A2: Chat View -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+          <span style="font-size: 14px; color: #999;">←</span>
+          <div class="wf-avatar sm">👤</div>
+          <div>
+            <div class="wf-line short" style="height: 9px; width: 80px;"></div>
+            <div style="font-size: 9px; color: #1DB954; margin-top: 2px;">● Ouvindo agora</div>
+          </div>
+          <div style="margin-left: auto; font-size: 14px; color: #999;">🎧</div>
+        </div>
+
+        <div class="wf-chat-row">
+          <div class="wf-avatar sm">👤</div>
+          <div>
+            <div class="wf-chat-bubble">
+              <div class="wf-line long xs"></div>
+              <div class="wf-line medium xs" style="margin-top: 3px;"></div>
+            </div>
+            <div class="wf-song-card">
+              <div class="wf-song-art"></div>
+              <div>
+                <div class="wf-line short xs" style="width: 70px;"></div>
+                <div class="wf-line xs" style="width: 50px; margin-top: 3px; opacity: 0.5;"></div>
+              </div>
+              <span style="margin-left: auto; font-size: 14px;">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-chat-row" style="justify-content: flex-end;">
+          <div class="wf-chat-bubble sent">
+            <div class="wf-line long xs"></div>
+          </div>
+        </div>
+
+        <div class="wf-chat-row" style="justify-content: flex-end;">
+          <div>
+            <div class="wf-chat-bubble sent">
+              <div style="font-size: 10px; color: #1DB954;">🎵 Compartilhou uma música</div>
+            </div>
+            <div class="wf-song-card">
+              <div class="wf-song-art"></div>
+              <div>
+                <div class="wf-line short xs" style="width: 60px;"></div>
+                <div class="wf-line xs" style="width: 40px; margin-top: 3px; opacity: 0.5;"></div>
+              </div>
+              <span style="margin-left: auto; font-size: 14px;">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-chat-row">
+          <div class="wf-avatar sm">👤</div>
+          <div class="wf-chat-bubble">
+            <span style="font-size: 16px;">🔥❤️</span>
+          </div>
+        </div>
+
+        <div style="position: absolute; bottom: 64px; left: 16px; right: 16px;">
+          <div style="display: flex; gap: 8px; align-items: center; background: #F0F0F0; border-radius: 20px; padding: 8px 12px;">
+            <span style="font-size: 14px;">🎵</span>
+            <div style="flex: 1; font-size: 11px; color: #999;">Envie uma mensagem ou música...</div>
+            <span style="font-size: 14px;">🎤</span>
+            <span style="font-size: 14px;">📎</span>
+          </div>
+        </div>
+
+        <div class="annotation" style="margin-top: 8px;">Preview da música inline com botão play</div>
+        <div class="annotation">Reações com emoji nas mensagens</div>
+        <div class="annotation">🎧 = iniciar sessão de escuta compartilhada</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Social</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">A2 — Chat com compartilhamento de música inline</div>
+  </div>
+
+  <!-- Screen A3: Free user paywall -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div class="wf-header">Mensagens</div>
+        
+        <div class="wf-card" style="display: flex; gap: 10px; align-items: center; opacity: 0.5;">
+          <div class="wf-avatar">👤</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px;"></div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+        <div class="wf-card" style="display: flex; gap: 10px; align-items: center; opacity: 0.3;">
+          <div class="wf-avatar">👤</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px;"></div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div style="text-align: center; padding: 2rem 1rem;">
+          <div style="font-size: 36px; margin-bottom: 12px;">💬</div>
+          <div style="font-family: 'Caveat', cursive; font-size: 20px; margin-bottom: 6px;">You've used 3/3 messages today</div>
+          <div style="font-size: 11px; color: #6B6860; margin-bottom: 16px; line-height: 1.6;">Assine o Premium para mensagens ilimitadas, notas de voz e sessões de escuta compartilhada.</div>
+          <div class="wf-upgrade-banner" style="margin-top: 0;">
+            <div class="wf-upgrade-text">Seja Premium, sem limites</div>
+            <div class="wf-upgrade-btn">Assinar Agora</div>
+          </div>
+        </div>
+
+        <div class="annotation">Paywall suave: vê os chats, não consegue responder</div>
+        <div class="annotation">Gatilho de conversão: FOMO nas conversas</div>
+        <div class="annotation">Reset diário mantém o retorno</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Social</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">A3 — Paywall do free user (momento de conversão)</div>
+  </div>
+
+  <!-- Screen A4: Profile with social -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div style="text-align: center; margin-bottom: 16px;">
+          <div class="wf-avatar lg" style="margin: 0 auto 8px;">👤</div>
+          <div class="wf-line short" style="margin: 0 auto 4px; height: 12px; width: 100px;"></div>
+          <div style="font-size: 10px; color: #999;">142 followers · 89 following</div>
+          <div style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;">
+            <div style="font-size: 10px; background: #1DB954; color: white; padding: 5px 16px; border-radius: 100px;">Seguir</div>
+            <div style="font-size: 10px; background: #F0F0F0; color: #1A1916; padding: 5px 16px; border-radius: 100px;">Mensagem</div>
+          </div>
+        </div>
+
+        <div class="wf-section-title">Ouvindo agora</div>
+        <div class="wf-song-card" style="margin-bottom: 12px;">
+          <div class="wf-song-art"></div>
+          <div>
+            <div class="wf-line short xs" style="width: 90px;"></div>
+            <div class="wf-line xs" style="width: 60px; margin-top: 3px; opacity: 0.5;"></div>
+          </div>
+          <span style="margin-left: auto; font-size: 10px; color: #1DB954;">● Ao vivo</span>
+        </div>
+
+        <div class="wf-section-title">Artistas mais ouvidos este mês</div>
+        <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+          <div style="text-align: center;">
+            <div class="wf-avatar">🎵</div>
+            <div class="wf-line xs" style="width: 40px; margin-top: 4px;"></div>
+          </div>
+          <div style="text-align: center;">
+            <div class="wf-avatar">🎵</div>
+            <div class="wf-line xs" style="width: 40px; margin-top: 4px;"></div>
+          </div>
+          <div style="text-align: center;">
+            <div class="wf-avatar">🎵</div>
+            <div class="wf-line xs" style="width: 40px; margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-section-title">Playlists compartilhadas</div>
+        <div class="wf-card">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div class="wf-song-art"></div>
+            <div>
+              <div class="wf-line short xs" style="width: 100px;"></div>
+              <div style="font-size: 9px; color: #999; margin-top: 2px;">Colaborativa · 47 músicas</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="annotation">Perfil = identidade social</div>
+        <div class="annotation">Botão "Mensagem" = entrada pro chat</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Social</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">A4 — Perfil do usuário (identidade social)</div>
+  </div>
+
+</div>
+
+<div class="notes-box">
+  <div class="notes-title">💡 Opção A — Perguntas para Teste</div>
+  <div class="notes-text">
+    1. Você mandaria mensagem sobre uma música dentro do Spotify, ou continuaria usando WhatsApp/Instagram?<br>
+    2. O limite de 3 mensagens/dia é frustrante o suficiente para te fazer assinar?<br>
+    3. A aba "Social" na navbar parece natural ou polui a experiência?<br>
+    4. Você usaria notas de voz para compartilhar reações sobre músicas?
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===================== OPTION B ===================== -->
+<div class="option-header">
+  <span class="option-label">Option B</span>
+  <span class="option-title">Hubs de Comunidade + Grupos por Interesse</span>
+</div>
+<p class="option-desc">
+  Em vez de mensagens 1-a-1, essa abordagem foca em comunidade. Grupos por gênero e artista onde fãs discutem, compartilham playlists e descobrem música juntos. Usuários Premium podem criar e moderar comunidades, acessar Q&As exclusivos com artistas e entrar em grupos privados. Usuários Free podem navegar e ler mas não podem postar — criando valor aspiracional.
+</p>
+
+<div class="phones-row">
+
+  <!-- Screen B1: Community Tab -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div class="wf-header">Community</div>
+        
+        <div class="wf-tabs">
+          <div class="wf-tab active">Para Você</div>
+          <div class="wf-tab">Artistas</div>
+          <div class="wf-tab">Gêneros</div>
+          <div class="wf-tab">Local</div>
+        </div>
+
+        <div class="wf-section-title">Suas comunidades</div>
+
+        <div class="wf-community-card">
+          <div class="wf-community-art">🎸</div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="wf-line short" style="height: 10px; width: 100px;"></div>
+              <div style="width: 6px; height: 6px; background: #1DB954; border-radius: 50%;"></div>
+            </div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">12.4k membros · 23 ativos agora</div>
+            <div class="wf-line long xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-community-card">
+          <div class="wf-community-art">🎹</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px; width: 80px;"></div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">8.2k membros · 15 ativos agora</div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-section-title">Sugestões para você</div>
+
+        <div class="wf-community-card" style="border-color: #1DB954;">
+          <div class="wf-community-art">🎤</div>
+          <div style="flex: 1;">
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <div class="wf-line short" style="height: 10px; width: 90px;"></div>
+              <span class="wf-badge premium">Premium</span>
+            </div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">Comunidade exclusiva do artista</div>
+            <div style="font-size: 10px; color: #1DB954; margin-top: 4px;">Entrar →</div>
+          </div>
+        </div>
+
+        <div class="wf-community-card">
+          <div class="wf-community-art">🎧</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px; width: 110px;"></div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">5.1k membros</div>
+          </div>
+        </div>
+
+        <div class="annotation">Algoritmo sugere baseado no que ouve</div>
+        <div class="annotation">Badge Premium = comunidades exclusivas</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Community</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">B1 — Aba de Comunidade (novo item na nav)</div>
+  </div>
+
+  <!-- Screen B2: Inside a community -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <span style="font-size: 14px; color: #999;">←</span>
+          <div class="wf-community-art" style="width: 28px; height: 28px; font-size: 14px;">🎸</div>
+          <div>
+            <div class="wf-line short" style="height: 9px; width: 100px;"></div>
+            <div style="font-size: 9px; color: #999;">12.4k membros</div>
+          </div>
+        </div>
+
+        <div class="wf-tabs">
+          <div class="wf-tab active">Feed</div>
+          <div class="wf-tab">Playlists</div>
+          <div class="wf-tab">Eventos</div>
+        </div>
+
+        <!-- Post 1 -->
+        <div class="wf-card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <div class="wf-avatar sm">👤</div>
+            <div>
+              <div class="wf-line xs" style="width: 70px;"></div>
+              <div style="font-size: 8px; color: #999; margin-top: 2px;">2h atrás</div>
+            </div>
+          </div>
+          <div class="wf-line long xs" style="margin-bottom: 3px;"></div>
+          <div class="wf-line medium xs" style="margin-bottom: 6px;"></div>
+          <div class="wf-song-card">
+            <div class="wf-song-art"></div>
+            <div>
+              <div class="wf-line short xs" style="width: 80px;"></div>
+              <div class="wf-line xs" style="width: 50px; margin-top: 3px; opacity: 0.5;"></div>
+            </div>
+            <span style="margin-left: auto; font-size: 14px;">▶</span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-top: 8px; font-size: 10px; color: #999;">
+            <span>❤️ 42</span>
+            <span>💬 12</span>
+            <span>🔄 8</span>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="wf-card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <div class="wf-avatar sm">👤</div>
+            <div class="wf-line xs" style="width: 60px;"></div>
+          </div>
+          <div class="wf-line long xs" style="margin-bottom: 3px;"></div>
+          <div class="wf-line short xs" style="margin-bottom: 6px;"></div>
+          <div style="display: flex; gap: 16px; margin-top: 4px; font-size: 10px; color: #999;">
+            <span>❤️ 18</span>
+            <span>💬 5</span>
+          </div>
+        </div>
+
+        <div class="annotation">Usuários compartilham músicas + opiniões</div>
+        <div class="annotation">Playlists da comunidade (colaborativas)</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Community</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">B2 — Dentro de uma comunidade (feed)</div>
+  </div>
+
+  <!-- Screen B3: Free user view -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div class="wf-header">Community</div>
+        
+        <div class="wf-tabs">
+          <div class="wf-tab active">Para Você</div>
+          <div class="wf-tab">Artistas</div>
+          <div class="wf-tab">Gêneros</div>
+        </div>
+
+        <div class="wf-community-card">
+          <div class="wf-community-art">🎸</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px; width: 100px;"></div>
+            <div style="font-size: 9px; color: #999; margin-top: 3px;">12.4k membros</div>
+            <div style="font-size: 10px; color: #999; margin-top: 4px;">Apenas visualizar →</div>
+          </div>
+        </div>
+
+        <div class="wf-community-card wf-lock-overlay" style="min-height: 60px;">
+          <div class="wf-community-art">⭐</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px;"></div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-community-card wf-lock-overlay" style="min-height: 60px;">
+          <div class="wf-community-art">🎤</div>
+          <div style="flex: 1;">
+            <div class="wf-line short" style="height: 10px;"></div>
+            <div class="wf-line medium xs" style="margin-top: 4px;"></div>
+          </div>
+        </div>
+
+        <div class="wf-upgrade-banner">
+          <div class="wf-upgrade-text">Participe de comunidades exclusivas. Compartilhe sua voz.</div>
+          <div class="wf-upgrade-btn">Seja Premium</div>
+        </div>
+
+        <div class="annotation" style="margin-top: 12px;">Free: pode navegar, não pode postar</div>
+        <div class="annotation">Comunidades trancadas = aspiracional</div>
+        <div class="annotation">Exclusivos de artista = gatilho mais forte</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Community</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">B3 — Visão do free user (momento de conversão)</div>
+  </div>
+
+  <!-- Screen B4: Artist Community (Premium) -->
+  <div class="phone-wrapper">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-content">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span style="font-size: 14px; color: #999;">←</span>
+          <div class="wf-line" style="height: 10px; width: 100px;"></div>
+          <span class="wf-badge premium" style="margin-left: auto;">Premium</span>
+        </div>
+        
+        <div style="background: linear-gradient(180deg, #1DB95420 0%, transparent 100%); border-radius: 10px; padding: 12px; margin-bottom: 12px; text-align: center;">
+          <div class="wf-avatar lg" style="margin: 0 auto 6px; border-color: #1DB954;">🎤</div>
+          <div class="wf-line" style="height: 12px; width: 120px; margin: 0 auto 4px;"></div>
+          <div style="font-size: 9px; color: #999;">Comunidade oficial do artista · 45k membros</div>
+        </div>
+
+        <div class="wf-tabs">
+          <div class="wf-tab active">Posts</div>
+          <div class="wf-tab">Q&A</div>
+          <div class="wf-tab">Exclusivos</div>
+        </div>
+
+        <div class="wf-card" style="border-color: #1DB954;">
+          <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px;">
+            <div class="wf-avatar sm" style="border-color: #1DB954;">🎤</div>
+            <div style="font-size: 10px; font-weight: 500;">Artista</div>
+            <span style="font-size: 8px; background: #1DB954; color: white; padding: 1px 5px; border-radius: 3px;">Oficial</span>
+          </div>
+          <div class="wf-line long xs" style="margin-bottom: 3px;"></div>
+          <div class="wf-line medium xs"></div>
+          <div style="display: flex; gap: 16px; margin-top: 8px; font-size: 10px; color: #999;">
+            <span>❤️ 2.1k</span>
+            <span>💬 342</span>
+          </div>
+        </div>
+
+        <div class="wf-card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+            <div class="wf-avatar sm">👤</div>
+            <div class="wf-line xs" style="width: 60px;"></div>
+          </div>
+          <div class="wf-line long xs"></div>
+          <div style="display: flex; gap: 16px; margin-top: 6px; font-size: 10px; color: #999;">
+            <span>❤️ 8</span>
+            <span>💬 2</span>
+          </div>
+        </div>
+
+        <div class="annotation">Artista posta diretamente para os fãs</div>
+        <div class="annotation">Aba QQ&A tab = exclusive interactionA = interação exclusiva</div>
+        <div class="annotation">Maior alavanca de conversão premium</div>
+
+      </div>
+      <div class="phone-navbar">
+        <div class="nav-item"><div class="nav-icon filled"></div>Início</div>
+        <div class="nav-item"><div class="nav-icon"></div>Busca</div>
+        <div class="nav-item new"><div class="nav-icon" style="border-radius: 50%;"></div>Community</div>
+        <div class="nav-item"><div class="nav-icon"></div>Biblioteca</div>
+      </div>
+    </div>
+    <div class="phone-label">B4 — Comunidade do artista (exclusivo Premium)</div>
+  </div>
+
+</div>
+
+<div class="notes-box">
+  <div class="notes-title">💡 Opção B — Perguntas para Teste</div>
+  <div class="notes-text">
+    1. Você entraria numa comunidade baseada no seu artista ou gênero favorito?<br>
+    2. Q&As exclusivos com artistas seriam motivo suficiente para assinar o Premium?<br>
+    3. "Apenas visualizar" para free users parece justo, ou te afastaria do app?<br>
+    4. Você postaria numa comunidade, ou só ficaria lendo?<br>
+    5. Como você se sentiria vendo o que seus amigos estão ouvindo em tempo real?
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- Comparação -->
+<div style="max-width: 700px; margin: 0 auto;">
+  <div class="option-header">
+    <span class="option-label" style="background: #1A191610; color: #1A1916;">Comparação</span>
+    <span class="option-title">A vs B — Resumo Rápido</span>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 1rem;">
+    <div>
+      <div style="font-weight: 500; margin-bottom: 8px;">Opção A — Mensagens Diretas</div>
+      <div style="font-size: 12px; color: #6B6860; line-height: 1.8;">
+        ✅ Mais pessoal, íntimo<br>
+        ✅ Extensão natural de compartilhar músicas<br>
+        ✅ Compete com WhatsApp/iMessage<br>
+        ❌ Pessoas podem não querer OUTRO app de mensagem<br>
+        ❌ Requer massa crítica de amigos no Spotify<br>
+        💰 Alavanca de conversão: paywall de limite de mensagens
+      </div>
+    </div>
+    <div>
+      <div style="font-weight: 500; margin-bottom: 8px;">Opção B — Hubs de Comunidade</div>
+      <div style="font-size: 12px; color: #6B6860; line-height: 1.8;">
+        ✅ Não requer amigos no Spotify<br>
+        ✅ Exclusivos de artista = gatilho muito forte de upgrade<br>
+        ✅ Alinhado com a Gen Z querendo conexão genuína<br>
+        ❌ Moderação é complexa<br>
+        ❌ Pode ficar barulhento/tipo Reddit<br>
+        💰 Alavanca de conversão: comunidades exclusivas + direito de postar
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
